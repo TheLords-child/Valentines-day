@@ -1,0 +1,232 @@
+<!Doctype html>
+<html>
+<head>
+<Title>
+I Love You Tilly
+</Title>
+<link rel="icon" type="png/jpg" href="images/Heart Favicon.png">
+</head>
+<body>
+
+<div class="centre">
+<div class="envelope" onclick="openEnvelope()">
+ <div class="flap"></div>
+   <div class="letter hidden">
+    <p class="letter-text"> My love,<br><br>
+
+In a world that moves too fast, you feel like a quiet answer to a prayer I didn’t know how to word.<br><br>
+
+If love is patient, kind, and chosen daily,
+then I want to choose you. Today especially...<br><br>
+
+<strong>Will you be my Valentine? 🌹</strong>
+</p>
+  
+
+
+
+<div class="button-row">
+    <a href="2Valentine.html">
+        <button class="btn-green"> Yes</button>
+    </a>
+    <button id="noBtn" class="btn-red"> No</button>
+</div>
+
+      </div>
+      <p class="scripture fade-scripture">
+  “Every good and perfect gift is from above.” — James 1:17
+     </p>
+</div>
+</div>
+<audio id="bgMusic" loop>
+  <source src="" type="audio/mpeg">
+</audio>
+
+<style>
+.envelope {
+  width: 400px;
+  height: 300px;
+  background: #c0392b;
+  position: relative;
+  cursor: pointer;
+  overflow:hidden;
+  border-radius: 12px; /*new might have to move*/
+}
+.flap {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 50%;
+  background: #e74c3c;
+  transform-origin: top;
+  transition: transform 0.8s ease;
+  z-index: 3;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+.envelope.open .flap {
+  transform: rotateX(180deg);
+   bottom: 0;
+}
+.letter {
+  position: absolute;
+  bottom: -100;
+  left: 0;
+  width:100%;
+  min-height: 100%;
+  background: white;
+  padding: 20px;
+  box-sizing: border-box;
+  text-align: center;
+  z-index: 2; 
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 6px ;
+  transition: bottom 1s ease;
+}
+.hidden {
+  display: none;
+}
+.letter-text{
+  font-size: 14px;
+  line-height: 1.4;
+}
+.centre{ 
+   height: 100vh;              
+   display: flex;
+   flex-direction: column;   
+   justify-content: center;    
+   align-items: center;        
+}
+.fade-scripture {
+  opacity: 0;
+  transition: opacity 2s ease;
+}
+body{ 
+     background-color: rgb(228, 201, 216);
+}
+.button-row{
+     display: flex;
+     justify-content: center;  
+     gap: 16px;
+     margin-top: 10px;
+     flex-shrink: 0;
+}
+
+.btn-green{ 
+    padding: 12px 36px ;
+    border:none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
+    min-width: 110px;
+}
+.btn-green{
+    background-color: rgb(19, 235, 19);
+}
+.btn-red{ 
+    padding: 12px 36px ;
+    border:none;
+    border-radius: 6px ;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
+    min-width: 110px;
+}
+.btn-red{
+    background-color: rgb(255, 0, 0);
+}
+img {
+    width: 150px;
+    height: 150px;
+}
+.scripture {
+  font-size: 13px;
+  font-style: italic;
+  color:#807015;
+  text-align: center;
+  margin-top: 10px;
+  }
+.heart {
+  position: fixed;
+  top:-40px;
+  font-size: 22px;
+  background: pink;
+  clip-path: polygon(50% 0%, 61% 13%, 75% 25%, 50% 100%, 25% 25%, 39% 13%);
+  animation: fall linear forwards;
+  pointer-events: none;
+  z-index: 9999; 
+}
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
+}
+/* Mobile layout PLEASE DO NOT TOUCH THIS */
+@media (max-width: 600px) {
+  .scripture {
+    font-size: 11px;
+    margin-top: 8px;
+   
+  }
+}
+
+
+</style>
+<script>
+function openEnvelope() {
+  const envelope = document.querySelector('.envelope');
+  const letter = document.querySelector('.letter');
+  const scripture = document.querySelector('.fade-scripture');
+  const music = document.getElementById("bgMusic");
+
+  if (!envelope.classList.contains('open')) {
+    envelope.classList.add('open');
+    letter.classList.remove('hidden');
+
+    music.volume = 0.4; // volume
+    music.play();
+    setTimeout(() => {
+      scripture.style.opacity = 1;
+    }, 1000);
+  }
+}
+
+// Hide n See  Button
+let noScale = 1;
+const noBtn = document.getElementById("noBtn");
+
+noBtn.addEventListener("click", () => {
+  noScale -= 0.15;
+  if (noScale < 0.3) noScale = 0.3;
+  noBtn.style.transform = `scale(${noScale})`;
+});
+
+// Romantic waltzing hearts
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+
+  const hearts = ["💗", "💖", "💕", "💓"];
+  heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (14 + Math.random() * 20) + "px";
+  heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 9000);
+}
+
+// Heart generator rex rate
+setInterval(createHeart, 250);
+
+</script>
+</body>
+</html>    

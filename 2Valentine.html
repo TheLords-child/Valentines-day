@@ -1,0 +1,121 @@
+<!Doctype html>
+<html>
+<head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>She Said YES 💖</title>
+<link rel="icon" type="image/png" href="images/Heart Favicon.png">
+
+<style>
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', sans-serif;
+  overflow: hidden;
+}
+
+.container {
+  text-align: center;
+  animation: fadeIn 1.5s ease;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #b0003a;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 1.2rem;
+  color: #5a0020;
+  margin-bottom: 25px;
+}
+
+img {
+  width: 280px;
+  max-width: 90vw;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+/* Fade animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Floating hearts */
+.heart {
+  position: fixed;
+  top: -40px;
+  font-size: 22px;
+  animation: floatDown linear forwards;
+  pointer-events: none;
+  z-index: 999;
+}
+
+@keyframes floatDown {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  10% { opacity: 1; }
+  50% { transform: translateY(50vh) translateX(40px); }
+  100% { transform: translateY(110vh) translateX(-40px); opacity: 0; }
+}
+
+@media (max-width: 600px) {
+  h1 { font-size: 2rem; }
+  p { font-size: 1rem; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>SHE SAID YES 💖</h1>
+  <p>My heart is yours, today and always.</p>
+
+  <!-- Romantic GIF -->
+  <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" alt="Love Gif">
+</div>
+<audio src="audios/Kool & The Gang - Celebration [3GwjfUFyY6M].mp3" id="bgMusic" autoplay loop>
+    
+</audio>
+<script>
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+
+  const hearts = ["💗", "💖", "💕", "💓"];
+  heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (3 + Math.random() * 4) + "s";
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 8000);
+}
+
+setInterval(createHeart, 220);
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
